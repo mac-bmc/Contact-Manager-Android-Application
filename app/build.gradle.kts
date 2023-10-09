@@ -8,6 +8,10 @@ android {
     namespace = "com.example.contactmanager"
     compileSdk = 33
 
+    dataBinding{
+        android.buildFeatures.dataBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.example.contactmanager"
         minSdk = 24
@@ -53,4 +57,15 @@ dependencies {
     kapt("androidx.room:room-compiler:$roomVersion")
     implementation ("androidx.room:room-ktx:2.2.1")
     kapt ("androidx.room:room-compiler:2.2.1")
+
+    //Lifecycle
+    val lifecycleVersion = "2.6.2"
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycleVersion")
+    kapt("androidx.lifecycle:lifecycle-compiler:$lifecycleVersion")
+
+
+    //coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
 }

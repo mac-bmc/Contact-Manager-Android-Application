@@ -5,11 +5,11 @@ class ContactRepository(private val contactDao: ContactDao) {
 
     val readAllData: LiveData<List<ContactModel>> = contactDao.readAllData()
 
-    suspend fun addBook(contactModel: ContactModel)
+    suspend fun addContact(contactModel: ContactModel)
     {
         contactDao.insertContact(contactModel)
     }
-    suspend fun updateBook(contactModel: ContactModel)
+    suspend fun updateContact(contactModel: ContactModel)
     {
 
         val name = contactModel.contactName
@@ -18,7 +18,7 @@ class ContactRepository(private val contactDao: ContactDao) {
         contactDao.updatebyId(name,phNumber,id)
     }
 
-    suspend fun deleteBook(contactModel: ContactModel)
+    suspend fun deleteContact(contactModel: ContactModel)
     {
        val id = contactModel.contactId
         contactDao.deleteById(id)
