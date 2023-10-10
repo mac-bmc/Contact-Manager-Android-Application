@@ -22,7 +22,7 @@ interface ContactDao {
     @Query("DELETE FROM ContactsDetails")
     suspend fun deleteAll()
 
-    @Query("SELECT * FROM ContactsDetails ORDER BY contactId ASC ")
+    @Query("SELECT * FROM ContactsDetails ORDER BY contactName ASC ")
     fun readAllData() : LiveData<List<ContactModel>>
 
 

@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 class ContactListViewModel(application: Application):AndroidViewModel(application) {
 
     private lateinit var contactRepository: ContactRepository
-    private lateinit var contactData: LiveData<List<ContactModel>>
+     lateinit var contactData: LiveData<List<ContactModel>>
 
     init {
         val contactDao=ContactDatabase.getDatabase(application).userDao()
