@@ -1,5 +1,7 @@
-package com.example.contactmanager.model
+package com.example.contactmanager.repositories
 import androidx.lifecycle.LiveData
+import com.example.contactmanager.model.ContactDao
+import com.example.contactmanager.model.ContactModel
 
 class ContactRepository(private val contactDao: ContactDao) {
 

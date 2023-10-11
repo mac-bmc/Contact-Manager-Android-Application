@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.contactmanager.model.ContactDatabase
 import com.example.contactmanager.model.ContactModel
-import com.example.contactmanager.model.ContactRepository
+import com.example.contactmanager.repositories.ContactRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

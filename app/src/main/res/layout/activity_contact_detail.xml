@@ -11,5 +11,136 @@
     android:layout_height="match_parent"
     tools:context=".view.ContactDetailActivity">
 
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        android:paddingTop="50dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal">
+
+
+            <ImageButton
+                android:id="@+id/deleteButton"
+                android:layout_width="59dp"
+                android:layout_height="62dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/buttonPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_delete_all" />
+
+            <ImageButton
+                android:id="@+id/contactImage"
+                android:layout_width="97dp"
+                android:layout_height="105dp"
+                android:layout_marginTop="48dp"
+                android:background="@drawable/border"
+                android:clickable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <EditText
+                android:id="@+id/editContactName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="56dp"
+                android:layout_marginRight="20dp"
+
+                android:background="@drawable/edittext_layout"
+                android:hint="Enter Name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contactImage" />
+
+            <EditText
+                android:id="@+id/editContactNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/edittext_layout"
+                android:hint="Enter Number"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.609"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editContactName"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/updateContactButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update Contacts"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.097"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editContactNumber"
+                app:layout_constraintVertical_bias="0.708" />
+
+            <Button
+                android:id="@+id/shareButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="42dp"
+                android:text="Share "
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.22"
+                app:layout_constraintStart_toEndOf="@+id/updateContactButton"
+                app:layout_constraintTop_toBottomOf="@+id/editContactNumber"
+                app:layout_constraintVertical_bias="0.708" />
+
+            <ImageButton
+                android:id="@+id/callButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/buttonPrimary"
+                android:layout_marginTop="48dp"
+                app:layout_constraintEnd_toStartOf="@+id/msgButton"
+                app:layout_constraintHorizontal_bias="0.474"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editContactNumber"
+                app:srcCompat="@drawable/ic_call" />
+
+            <ImageButton
+                android:id="@+id/msgButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/buttonPrimary"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="64dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editContactNumber"
+                app:srcCompat="@drawable/ic_message" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

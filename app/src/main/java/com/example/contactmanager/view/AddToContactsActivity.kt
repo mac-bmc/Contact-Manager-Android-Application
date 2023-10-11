@@ -30,7 +30,7 @@ class AddToContactsActivity : AppCompatActivity() {
                 contactListViewModel.addContact(contact)
                 Toast.makeText(this@AddToContactsActivity,"Contact succesfully added",Toast.LENGTH_SHORT)
                     .show()
-                startActivity(Intent(this@AddToContactsActivity,ContactListActivity::class.java))
+                startActivity(Intent(this@AddToContactsActivity, ContactListActivity::class.java))
             }
         }
     }

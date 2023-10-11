@@ -1,7 +1,6 @@
 package com.example.contactmanager.view
 
 import android.content.Intent
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -21,7 +20,7 @@ class ContactListActivity : AppCompatActivity() {
         homeBinding= DataBindingUtil.setContentView(this, R.layout.activity_contact_list)
 
         val recView=homeBinding.recyclerContactListView
-        val adapter = ContactListViewAdapter()
+        val adapter = ContactListViewAdapter(this@ContactListActivity)
         recView.adapter=adapter
         recView.layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
 
@@ -40,7 +39,7 @@ class ContactListActivity : AppCompatActivity() {
         homeBinding.apply {
 
             floatingActionButton.setOnClickListener{
-                val intent=Intent(this@ContactListActivity,AddToContactsActivity::class.java)
+                val intent=Intent(this@ContactListActivity, AddToContactsActivity::class.java)
                 startActivity(intent)
             }
 
