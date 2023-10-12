@@ -65,6 +65,7 @@ class ContactDetailActivity : AppCompatActivity() {
             }
 
 
+
         }
     }
 }

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ContactManager</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cancel">Cancel</string>
+    <string name="cam">Capture from Camera</string>
+    <string name="gallery">Upload from gallery</string>
 </resources>
