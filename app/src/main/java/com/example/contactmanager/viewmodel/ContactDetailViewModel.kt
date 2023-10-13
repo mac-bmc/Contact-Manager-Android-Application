@@ -44,7 +44,7 @@ class ContactDetailViewModel(application: Application) : AndroidViewModel(applic
     }
 
     fun msg(context: Context, number: String) {
-        contactRepository.makemsg(context, number)
+        contactRepository.makeMsg(context, number)
     }
 
 

@@ -3,7 +3,6 @@ package com.example.contactmanager.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
@@ -50,11 +49,11 @@ class ContactListActivity : AppCompatActivity() {
                 val builder = AlertDialog.Builder(this@ContactListActivity)
                 builder.setTitle("Deletion Alert")
                 builder.setMessage("Are you sure to delete the data")
-                builder.setPositiveButton(R.string.yes) { dialog, which ->
+                builder.setPositiveButton(R.string.yes) { _, _ ->
                     contactListViewModel.deleteAll()
                     homeBinding.noData.isVisible = true
                 }
-                builder.setNegativeButton(R.string.no) { dialog, which ->
+                builder.setNegativeButton(R.string.no) { _, _ ->
                     Toast.makeText(
                         this@ContactListActivity,
                         "Delete Action Suspended",

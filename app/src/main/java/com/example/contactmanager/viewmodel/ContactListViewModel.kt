@@ -12,8 +12,8 @@ import kotlinx.coroutines.launch
 
 class ContactListViewModel(application: Application) : AndroidViewModel(application) {
 
-    private lateinit var contactRepository: ContactRepository
-    lateinit var contactData: LiveData<List<ContactModel>>
+    private  var contactRepository: ContactRepository
+     var contactData: LiveData<List<ContactModel>>
 
     init {
         val contactDao = ContactDatabase.getDatabase(application).userDao()

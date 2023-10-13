@@ -1,12 +1,8 @@
-@file:Suppress("DEPRECATION")
-
 package com.example.contactmanager.view
 
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
@@ -28,23 +24,20 @@ class AddToContactsActivity : AppCompatActivity() {
     private lateinit var addToContactsBinding: ActivityAddToContactsBinding
     private lateinit var contactListViewModel: ContactListViewModel
     private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
-    var imageUri: Uri? = null
-     var imageUrl: String? = null
-    val pickImage = 1
+    private var imageUri: Uri? = null
+     private var imageUrl: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(android.Manifest.permission.CAMERA) ==
-                PackageManager.PERMISSION_DENIED ||
-                checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                == PackageManager.PERMISSION_DENIED
-            ) {
-                val permission = arrayOf(
-                    android.Manifest.permission.CAMERA,
-                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-                )
-                requestPermissions(permission, 112)
-            }
+        if (checkSelfPermission(android.Manifest.permission.CAMERA) ==
+            PackageManager.PERMISSION_DENIED ||
+            checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            == PackageManager.PERMISSION_DENIED
+        ) {
+            val permission = arrayOf(
+                android.Manifest.permission.CAMERA,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+            requestPermissions(permission, 112)
         }
 
 
@@ -76,7 +69,7 @@ class AddToContactsActivity : AppCompatActivity() {
                 contactListViewModel.addContact(contact)
                 Toast.makeText(
                     this@AddToContactsActivity,
-                    "Contact succesfully added",
+                    "Contact successfully added",
                     Toast.LENGTH_SHORT
                 )
                     .show()
@@ -86,14 +79,14 @@ class AddToContactsActivity : AppCompatActivity() {
                 val builder = AlertDialog.Builder(this@AddToContactsActivity)
                 builder.setTitle("Add Photo")
                 builder.setMessage("Pick Image from Gallery")
-                builder.setPositiveButton(R.string.gallery) { dialog, which ->
+                builder.setPositiveButton(R.string.gallery) { _, _ ->
                     val intent =
                         Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
                     galleryLauncher.launch(intent)
 
                 }
 
-                builder.setNegativeButton(R.string.cancel) { dialog, which ->
+                builder.setNegativeButton(R.string.cancel) { _, _ ->
                     Toast.makeText(this@AddToContactsActivity, "Cancelled", Toast.LENGTH_SHORT)
                         .show()
 

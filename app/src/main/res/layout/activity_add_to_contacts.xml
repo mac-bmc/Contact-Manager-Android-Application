@@ -42,7 +42,8 @@
                     app:layout_constraintHorizontal_bias="0.501"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:src="@drawable/placeholder_image" />
+                    android:src="@drawable/placeholder_image"
+                    android:focusable="true" />
 
                 <EditText
                     android:id="@+id/editContactName"
@@ -51,13 +52,13 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="56dp"
                     android:layout_marginRight="20dp"
-
                     android:background="@drawable/edittext_layout"
-                    android:hint="Enter Name"
+                    android:hint="@string/enter_name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/contactImage" />
+                    app:layout_constraintTop_toBottomOf="@+id/contactImage"
+                    android:autofillHints="" />
 
                 <EditText
                     android:id="@+id/editContactNumber"
@@ -67,7 +68,7 @@
                     android:layout_marginTop="48dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/edittext_layout"
-                    android:hint="Enter Number"
+                    android:hint="@string/enter_number"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.902"
@@ -79,7 +80,7 @@
                     android:id="@+id/addToContactButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add to Contacts"
+                    android:text="@string/add_to_contacts"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +96,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.216"
-                    app:srcCompat="@android:drawable/ic_input_add" />
+                    app:srcCompat="@android:drawable/ic_input_add"
+                    android:focusable="true"
+                    android:contentDescription="@string/floatingAdd" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>

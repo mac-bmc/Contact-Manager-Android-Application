@@ -5,4 +5,12 @@
     <string name="cancel">Cancel</string>
     <string name="cam">Capture from Camera</string>
     <string name="gallery">Upload from gallery</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="enter_number">Enter Number</string>
+    <string name="update_contacts">Update Contacts</string>
+    <string name="share">Share</string>
+    <string name="content">content</string>
+    <string name="contactImage">contactImage</string>
+    <string name="add_to_contacts">Add to Contacts</string>
+    <string name="floatingAdd">FloatingAdd</string>
 </resources>

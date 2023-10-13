@@ -37,7 +37,8 @@
             android:layout_height="105dp"
             tools:layout_editor_absoluteX="17dp"
             android:src="@drawable/placeholder_image"
-            android:layout_gravity="start|center_horizontal"/>
+            android:layout_gravity="start|center_horizontal"
+            android:contentDescription="@string/contactImage" />
 
         <TextView
             android:layout_width="wrap_content"

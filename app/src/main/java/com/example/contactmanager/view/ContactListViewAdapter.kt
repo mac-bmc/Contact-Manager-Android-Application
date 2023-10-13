@@ -6,7 +6,6 @@ import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import com.example.contactmanager.R
 import androidx.recyclerview.widget.RecyclerView
@@ -14,12 +13,11 @@ import com.bumptech.glide.Glide
 import com.example.contactmanager.databinding.RecyclerContactListViewBinding
 import com.example.contactmanager.model.ContactModel
 
-class ContactListViewAdapter(context: Context) :
+class ContactListViewAdapter(private val context: Context) :
     RecyclerView.Adapter<ContactListViewAdapter.MyViewHolder>() {
 
     private var contactList = emptyList<ContactModel>()
     private lateinit var recyclerContactListViewBinding: RecyclerContactListViewBinding
-    private val context = context
 
     fun setContacts(contactList: List<ContactModel>) {
         this.contactList = contactList
@@ -47,14 +45,14 @@ class ContactListViewAdapter(context: Context) :
         if (contact.contactImage != "")
         {Glide.with(context)
             .load(Uri.parse(contact.contactImage))
-            .into(holder.itemView.findViewById<ImageView>(R.id.contactImage))}
+            .into(holder.itemView.findViewById(R.id.contactImage))}
         holder.itemView.setOnClickListener {
             Log.d("OnClick", "$contact")
             val intent = Intent(context, ContactDetailActivity::class.java)
-            intent.putExtra("name", "${contact.contactName}")
-            intent.putExtra("number", "${contact.contactNumber}")
-            intent.putExtra("id", "${contact.contactId}")
-            intent.putExtra("image", "${contact.contactImage}")
+            intent.putExtra("name", contact.contactName)
+            intent.putExtra("number", contact.contactNumber)
+            intent.putExtra("id", contact.contactId)
+            intent.putExtra("image", contact.contactImage)
             context.startActivity(intent)
         }
     }
