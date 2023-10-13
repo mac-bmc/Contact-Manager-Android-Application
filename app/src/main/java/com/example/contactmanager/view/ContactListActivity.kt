@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -32,7 +33,7 @@ class ContactListActivity : AppCompatActivity() {
         contactListViewModel.contactData.observe(this, Observer { contact->
             if (contact.isEmpty())
             {
-                homeBinding.noData.visibility= View.VISIBLE
+                homeBinding.noData.isVisible=true
             }
             adapter.setContacts(contact)
 
@@ -51,7 +52,7 @@ class ContactListActivity : AppCompatActivity() {
                 builder.setMessage("Are you sure to delete the data")
                 builder.setPositiveButton(R.string.yes){ dialog, which ->
                     contactListViewModel.deleteAll()
-                    homeBinding.noData.visibility= View.VISIBLE
+                    homeBinding.noData.isVisible=true
                 }
                 builder.setNegativeButton(R.string.no){ dialog, which ->
                     Toast.makeText(this@ContactListActivity,"Delete Action Suspended",Toast.LENGTH_SHORT).show()

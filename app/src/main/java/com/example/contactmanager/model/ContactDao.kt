@@ -13,8 +13,8 @@ interface ContactDao {
     @Insert()
     suspend fun insertContact(contact: ContactModel)
 
-    @Query("UPDATE ContactsDetails SET contactName = :name, contactNumber = :phNumber WHERE contactId =:id")
-    suspend fun updatebyId(name:String,phNumber: String,id: Int)
+    @Query("UPDATE ContactsDetails SET contactName = :name, contactNumber = :phNumber, contactImage = :image WHERE contactId =:id")
+    suspend fun updatebyId(name:String,phNumber: String,id: Int,image: String)
 
     @Query("DELETE FROM ContactsDetails WHERE contactId = :id")
     suspend fun deleteById(id: Int)

@@ -11,41 +11,40 @@ import com.example.contactmanager.repositories.SharingRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ContactDetailViewModel(application: Application):AndroidViewModel(application) {
+class ContactDetailViewModel(application: Application) : AndroidViewModel(application) {
 
-    private  var contactRepository: ContactRepository
-    private var sharingRepository : SharingRepository
+    private var contactRepository: ContactRepository
+    private var sharingRepository: SharingRepository
 
-    init{
-        contactRepository= ContactRepository(ContactDatabase.getDatabase(application).userDao())
-        sharingRepository= SharingRepository()
+    init {
+        contactRepository = ContactRepository(ContactDatabase.getDatabase(application).userDao())
+        sharingRepository = SharingRepository()
     }
 
-    fun updateContact(contactModel: ContactModel)
-    {
-        viewModelScope.launch(Dispatchers.IO){
+    fun updateContact(contactModel: ContactModel) {
+        viewModelScope.launch(Dispatchers.IO) {
             contactRepository.updateContact(contactModel)
         }
     }
 
-    fun deleteContact(contactModel: ContactModel)
-    {
-        viewModelScope.launch(Dispatchers.IO){
+    fun deleteContact(contactModel: ContactModel) {
+        viewModelScope.launch(Dispatchers.IO) {
             contactRepository.deleteContact(contactModel)
         }
     }
 
-    fun sharingContact(context: Context,name:String,number:String)
-    {
+    fun sharingContact(context: Context, name: String, number: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            sharingRepository.contactSharing(context,name,number)
+            sharingRepository.contactSharing(context, name, number)
         }
     }
-    fun call(context: Context,number: String)
-    {
-        viewModelScope.launch(Dispatchers.IO){
-            sharingRepository.call(context,number)
-        }
+
+    fun call(context: Context, number: String) {
+        sharingRepository.call(context, number)
+    }
+
+    fun msg(context: Context, number: String) {
+        contactRepository.makemsg(context, number)
     }
 
 

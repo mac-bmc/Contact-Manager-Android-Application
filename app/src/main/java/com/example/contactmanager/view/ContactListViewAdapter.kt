@@ -2,12 +2,15 @@ package com.example.contactmanager.view
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import com.example.contactmanager.R
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.contactmanager.databinding.RecyclerContactListViewBinding
 import com.example.contactmanager.model.ContactModel
 
@@ -36,12 +39,16 @@ class ContactListViewAdapter(context: Context):RecyclerView.Adapter<ContactListV
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val contact = contactList[position]
         holder.bind(contact)
+        Glide.with(context)
+            .load(Uri.parse(contact.contactImage))
+            .into(holder.itemView.findViewById<ImageView>(R.id.contactImage))
         holder.itemView.setOnClickListener{
             Log.d("OnClick","$contact")
             val intent = Intent(context, ContactDetailActivity::class.java)
             intent.putExtra("name","${contact.contactName}")
             intent.putExtra("number","${contact.contactNumber}")
             intent.putExtra("id","${contact.contactId}")
+            intent.putExtra("image","${contact.contactImage}")
             context.startActivity(intent)
         }
     }

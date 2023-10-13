@@ -7,5 +7,6 @@ data class ContactModel(
     @PrimaryKey(autoGenerate = true)
     val contactId: Int,
     val contactName: String,
-    val contactNumber: String
+    val contactNumber: String,
+    val contactImage: String
 )

@@ -1,11 +1,13 @@
 package com.example.contactmanager.view
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.contactmanager.R
 import com.example.contactmanager.databinding.ActivityContactDetailBinding
 import com.example.contactmanager.model.ContactModel
@@ -16,6 +18,7 @@ class ContactDetailActivity : AppCompatActivity() {
 
     private lateinit var detailBinding: ActivityContactDetailBinding
     private lateinit var contactDetailViewModel: ContactDetailViewModel
+    lateinit var imageUrl:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,15 +29,21 @@ class ContactDetailActivity : AppCompatActivity() {
 
         val name = intent.getStringExtra("name")
         val number = intent.getStringExtra("number")
+        imageUrl=intent.getStringExtra("image").toString()
         detailBinding.apply {
             editContactName.setText(name)
             editContactNumber.setText(number)
+
+            Glide.with(this@ContactDetailActivity)
+                .load(Uri.parse(imageUrl))
+                .into(contactImage)
 
             updateContactButton.setOnClickListener {
                 val contact = ContactModel(
                     Integer.parseInt(intent.getStringExtra("id")),
                     editContactName.text.toString(),
-                    editContactNumber.text.toString()
+                    editContactNumber.text.toString(),
+                    imageUrl
                 )
                 contactDetailViewModel.updateContact(contact)
                 startActivity(Intent(this@ContactDetailActivity, ContactListActivity::class.java))
@@ -51,7 +60,8 @@ class ContactDetailActivity : AppCompatActivity() {
                 val contact = ContactModel(
                     Integer.parseInt(intent.getStringExtra("id")),
                     editContactName.text.toString(),
-                    editContactNumber.text.toString()
+                    editContactNumber.text.toString(),
+                    imageUrl
                 )
                 Log.d("contact","$contact")
 
@@ -62,6 +72,11 @@ class ContactDetailActivity : AppCompatActivity() {
             callButton.setOnClickListener{
                 val number = editContactNumber.text.toString()
                 contactDetailViewModel.call(this@ContactDetailActivity,number)
+            }
+            msgButton.setOnClickListener{
+                contactDetailViewModel.msg(this@ContactDetailActivity,editContactNumber.text.toString())
+
+
             }
 
 

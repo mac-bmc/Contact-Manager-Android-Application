@@ -3,6 +3,8 @@ package com.example.contactmanager.repositories
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
+import android.widget.Toast
 
 class SharingRepository() {
 
@@ -21,10 +23,19 @@ class SharingRepository() {
 
     }
 
-    suspend fun call(context: Context,number:String)
+     fun call(context: Context,number:String)
     {
-        val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "$number"))
-        context.startActivity(intent)
+       try{
+           val callIntent = Intent()
+           callIntent.action=Intent.ACTION_CALL
+           callIntent.data = Uri.parse("tell:$number")
+           context.startActivity(callIntent)
+       }
+       catch (e:Exception)
+       {
+           Toast.makeText(context,"${e.toString()}",Toast.LENGTH_SHORT).show()
+
+       }
 
 
     }
