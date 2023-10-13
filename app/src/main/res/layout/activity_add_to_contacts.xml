@@ -42,7 +42,7 @@
                     app:layout_constraintHorizontal_bias="0.501"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@drawable/placeholder_image" />
+                    android:src="@drawable/placeholder_image" />
 
                 <EditText
                     android:id="@+id/editContactName"

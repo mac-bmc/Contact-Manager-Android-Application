@@ -10,28 +10,26 @@ import com.example.contactmanager.repositories.ContactRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ContactListViewModel(application: Application):AndroidViewModel(application) {
+class ContactListViewModel(application: Application) : AndroidViewModel(application) {
 
     private lateinit var contactRepository: ContactRepository
-     lateinit var contactData: LiveData<List<ContactModel>>
+    lateinit var contactData: LiveData<List<ContactModel>>
 
     init {
-        val contactDao=ContactDatabase.getDatabase(application).userDao()
+        val contactDao = ContactDatabase.getDatabase(application).userDao()
         contactRepository = ContactRepository(contactDao)
-        contactData=contactRepository.readAllData
+        contactData = contactRepository.readAllData
     }
 
-    fun addContact(contactModel: ContactModel)
-    {
+    fun addContact(contactModel: ContactModel) {
         viewModelScope.launch(Dispatchers.IO)
         {
             contactRepository.addContact(contactModel)
         }
     }
 
-    fun deleteAll()
-    {
-        viewModelScope.launch(Dispatchers.IO){
+    fun deleteAll() {
+        viewModelScope.launch(Dispatchers.IO) {
             contactRepository.deleteAll()
         }
     }

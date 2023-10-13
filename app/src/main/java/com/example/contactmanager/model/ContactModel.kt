@@ -1,4 +1,5 @@
 package com.example.contactmanager.model
+
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -7,5 +8,6 @@ data class ContactModel(
     @PrimaryKey(autoGenerate = true)
     val contactId: Int,
     val contactName: String,
-    val contactNumber: String
+    val contactNumber: String,
+    val contactImage: String
 )
