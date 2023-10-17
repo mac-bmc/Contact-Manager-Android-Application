@@ -25,7 +25,7 @@ class AddToContactsActivity : AppCompatActivity() {
     private lateinit var contactListViewModel: ContactListViewModel
     private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
     private var imageUri: Uri? = null
-     private var imageUrl: String? = null
+    private var imageUrl: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (checkSelfPermission(android.Manifest.permission.CAMERA) ==
@@ -61,19 +61,37 @@ class AddToContactsActivity : AppCompatActivity() {
             {
                 val name = editContactName.text.toString()
                 val number = editContactNumber.text.toString()
-                if(imageUrl==null)
-                {
-                    imageUrl=""
+                if (imageUrl == null) {
+                    imageUrl = ""
                 }
+
                 val contact = ContactModel(0, name, number, imageUrl.toString())
-                contactListViewModel.addContact(contact)
-                Toast.makeText(
-                    this@AddToContactsActivity,
-                    "Contact successfully added",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-                startActivity(Intent(this@AddToContactsActivity, ContactListActivity::class.java))
+                val isValidated = contactListViewModel.isValidated(contact)
+                if (isValidated) {
+                    contactListViewModel.addContact(contact)
+                    Toast.makeText(
+                        this@AddToContactsActivity,
+                        "Contact successfully added",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+                    startActivity(
+                        Intent(
+                            this@AddToContactsActivity,
+                            ContactListActivity::class.java
+                        )
+                    )
+                } else {
+                    Toast.makeText(
+                        this@AddToContactsActivity,
+                        "Invalid credentials",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+
+                }
+
+
             }
             imageAdd.setOnClickListener {
                 val builder = AlertDialog.Builder(this@AddToContactsActivity)

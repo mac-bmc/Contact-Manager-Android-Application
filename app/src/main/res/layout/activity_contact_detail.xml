@@ -65,25 +65,27 @@
 
             <EditText
                 android:id="@+id/editContactName"
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="34dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="56dp"
                 android:layout_marginRight="20dp"
-
+                android:autofillHints="Enter Name"
                 android:background="@drawable/edittext_layout"
+                android:enabled="false"
                 android:hint="@string/enter_name"
+                android:inputType="none"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contactImage"
-                android:autofillHints="Enter Name"
-                android:inputType="textPersonName" />
+                app:layout_constraintTop_toBottomOf="@+id/contactImage" />
 
             <EditText
                 android:id="@+id/editContactNumber"
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="34dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="48dp"
                 android:layout_marginRight="20dp"
@@ -95,7 +97,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editContactName"
                 app:layout_constraintVertical_bias="0.0"
-                android:inputType="number"
+                android:inputType="none"
+                android:enabled="false"
                 android:autofillHints="Enter number" />
 
             <Button
@@ -147,6 +150,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/editContactNumber"
                 app:srcCompat="@drawable/ic_message"
                 android:contentDescription="@string/content"/>
+
+            <ImageButton
+                android:id="@+id/editContactButton"
+                android:layout_width="59dp"
+                android:backgroundTint="@color/buttonPrimary"
+                android:layout_height="62dp"
+                android:layout_marginBottom="95dp"
+                app:layout_constraintBottom_toTopOf="@+id/editContactName"
+                app:layout_constraintEnd_toStartOf="@+id/contactImage"
+                app:layout_constraintHorizontal_bias="0.469"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/ic_edit_note" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
