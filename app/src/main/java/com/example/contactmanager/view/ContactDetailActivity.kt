@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -34,10 +35,11 @@ class ContactDetailActivity : AppCompatActivity() {
             editContactName.setText(name)
             editContactNumber.setText(number)
 
-            if(imageUrl!="")
-            {Glide.with(this@ContactDetailActivity)
-                .load(Uri.parse(imageUrl))
-                .into(contactImage)}
+            if (imageUrl != "") {
+                Glide.with(this@ContactDetailActivity)
+                    .load(Uri.parse(imageUrl))
+                    .into(contactImage)
+            }
 
             updateContactButton.setOnClickListener {
                 val contact = ContactModel(
@@ -81,6 +83,12 @@ class ContactDetailActivity : AppCompatActivity() {
                 )
 
 
+            }
+            editContactButton.setOnClickListener {
+                editContactName.inputType = InputType.TYPE_CLASS_TEXT
+                editContactName.isEnabled = true
+                editContactNumber.inputType = InputType.TYPE_CLASS_NUMBER
+                editContactNumber.isEnabled = true
             }
 
 

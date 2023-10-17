@@ -5,7 +5,9 @@ import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import com.example.contactmanager.R
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +20,7 @@ class ContactListViewAdapter(private val context: Context) :
 
     private var contactList = emptyList<ContactModel>()
     private lateinit var recyclerContactListViewBinding: RecyclerContactListViewBinding
+    var lastPosition=-1
 
     fun setContacts(contactList: List<ContactModel>) {
         this.contactList = contactList
@@ -42,6 +45,7 @@ class ContactListViewAdapter(private val context: Context) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val contact = contactList[position]
         holder.bind(contact)
+        setAnimation(holder.itemView,position)
         if (contact.contactImage != "")
         {Glide.with(context)
             .load(Uri.parse(contact.contactImage))
@@ -55,6 +59,16 @@ class ContactListViewAdapter(private val context: Context) :
             intent.putExtra("image", contact.contactImage)
             context.startActivity(intent)
         }
+    }
+
+    private fun setAnimation(itemView: View, position: Int) {
+        if(position>lastPosition)
+        {
+            val animation=AnimationUtils.loadAnimation(context,R.anim.slide_down)
+            itemView.startAnimation(animation)
+            lastPosition=position
+        }
+
     }
 
     override fun getItemCount(): Int {

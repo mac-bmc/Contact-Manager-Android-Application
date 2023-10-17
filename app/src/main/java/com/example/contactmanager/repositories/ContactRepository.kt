@@ -47,5 +47,30 @@ class ContactRepository(private val contactDao: ContactDao) {
         }
     }
 
+    fun isValidated(contactModel: ContactModel):Boolean
+    {
+        var isLetter=true
+        var isDigit=true
+        for(i in 0 until contactModel.contactName.length)
+        {
+            if(!contactModel.contactName[i].isLetter())
+            {
+                isLetter=false
+            }
+        }
+        for(i in 0 until contactModel.contactNumber.length)
+        {
+            if(!contactModel.contactNumber[i].isDigit())
+            {
+                isDigit=false
+            }
+        }
+        if(contactModel.contactNumber.length==10 && isLetter && isDigit)
+        {
+           return true
+        }
+        return false
+    }
+
 
 }

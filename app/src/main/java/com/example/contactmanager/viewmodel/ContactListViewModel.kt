@@ -33,6 +33,10 @@ class ContactListViewModel(application: Application) : AndroidViewModel(applicat
             contactRepository.deleteAll()
         }
     }
+    fun isValidated(contactModel: ContactModel):Boolean
+    {
+        return contactRepository.isValidated(contactModel)
+    }
 
 
 }
