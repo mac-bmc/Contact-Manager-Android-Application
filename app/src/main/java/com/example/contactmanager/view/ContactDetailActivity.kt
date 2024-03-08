@@ -2,10 +2,10 @@ package com.example.contactmanager.view
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -38,12 +38,14 @@ class ContactDetailActivity : AppCompatActivity() {
             if (imageUrl != "") {
                 Glide.with(this@ContactDetailActivity)
                     .load(Uri.parse(imageUrl))
+                    .error(R.drawable.placeholder_image)
                     .into(contactImage)
+
             }
 
             updateContactButton.setOnClickListener {
                 val contact = ContactModel(
-                    Integer.parseInt(intent.getStringExtra("id")),
+                    intent.getIntExtra("id", 0),
                     editContactName.text.toString(),
                     editContactNumber.text.toString(),
                     imageUrl
@@ -55,13 +57,13 @@ class ContactDetailActivity : AppCompatActivity() {
             shareButton.setOnClickListener() {
 
                 val name = editContactName.text.toString()
-                val number = editContactNumber.text.toString()
-                contactDetailViewModel.sharingContact(this@ContactDetailActivity, name, number)
+                val num = editContactNumber.text.toString()
+                contactDetailViewModel.sharingContact(this@ContactDetailActivity, name, num)
 
             }
             deleteButton.setOnClickListener {
                 val contact = ContactModel(
-                    Integer.parseInt(intent.getStringExtra("id")),
+                    intent.getIntExtra("id", 0),
                     editContactName.text.toString(),
                     editContactNumber.text.toString(),
                     imageUrl

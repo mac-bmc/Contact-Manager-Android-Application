@@ -1,10 +1,11 @@
 package com.example.contactmanager.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -27,12 +28,18 @@ class ContactListActivity : AppCompatActivity() {
         recView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         contactListViewModel =
-            ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application))
-                .get(ContactListViewModel::class.java)
+            ViewModelProvider(
+                this,
+                ViewModelProvider.AndroidViewModelFactory(application)
+            )[ContactListViewModel::class.java]
 
         contactListViewModel.contactData.observe(this, Observer { contact ->
             if (contact.isEmpty()) {
-                homeBinding.noData.isVisible = true
+                homeBinding.apply {
+                    noData.isVisible = true
+                    deleteAllButton.visibility = View.GONE
+                }
+
             }
             adapter.setContacts(contact)
 
@@ -46,27 +53,31 @@ class ContactListActivity : AppCompatActivity() {
             }
 
             deleteAllButton.setOnClickListener {
-                val builder = AlertDialog.Builder(this@ContactListActivity)
-                builder.setTitle("Deletion Alert")
-                builder.setMessage("Are you sure to delete the data")
-                builder.setPositiveButton(R.string.yes) { _, _ ->
-                    contactListViewModel.deleteAll()
-                    homeBinding.noData.isVisible = true
-                }
-                builder.setNegativeButton(R.string.no) { _, _ ->
-                    Toast.makeText(
-                        this@ContactListActivity,
-                        "Delete Action Suspended",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                }
-                builder.show()
+                showDialog()
 
 
             }
         }
 
 
+    }
+
+    private fun showDialog() {
+        val builder = AlertDialog.Builder(this@ContactListActivity)
+        builder.setTitle("Deletion Alert")
+        builder.setMessage("Are you sure to delete the data")
+        builder.setPositiveButton(R.string.yes) { _, _ ->
+            contactListViewModel.deleteAll()
+            homeBinding.noData.isVisible = true
+        }
+        builder.setNegativeButton(R.string.no) { _, _ ->
+            Toast.makeText(
+                this@ContactListActivity,
+                "Delete Action Suspended",
+                Toast.LENGTH_SHORT
+            ).show()
+
+        }
+        builder.show()
     }
 }
